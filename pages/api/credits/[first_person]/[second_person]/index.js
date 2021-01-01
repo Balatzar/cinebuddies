@@ -21,10 +21,10 @@ export default async (req, res) => {
       poster_path: credit.poster_path,
       first_person_character: credit.character,
       first_person_department: credit.department,
-      first_person_job: credit.job || "actor",
+      first_person_job: credit.job || "Actor",
       second_person_character: secondCredit.character,
       second_person_department: secondCredit.department,
-      second_person_job: secondCredit.job || "actor",
+      second_person_job: secondCredit.job || "Actor",
     });
     return acc;
   };
