@@ -7,7 +7,7 @@ const fetcher = async (url) => {
 
 const fetchCredits = async (id) => {
   return await fetcher(
-    `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${process.env.TGDB_API_KEY}`
+    `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.TGDB_API_KEY}&append_to_response=combined_credits`
   );
 };
 

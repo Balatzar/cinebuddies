@@ -8,7 +8,8 @@ export default async (req, res) => {
   const { id } = req.query;
 
   const personCreditsRes = await fetchCredits(id);
-  const personCredits = await personCreditsRes.json();
+  const person = await personCreditsRes.json();
+  const personCredits = person.combined_credits;
 
   const data = {};
   const fullData = personCredits.cast.concat(personCredits.crew);
@@ -26,7 +27,6 @@ export default async (req, res) => {
     const media = await mediaRes.json();
 
     if (media.status_code === 34) continue;
-    console.log(media.name || media.title);
 
     const fullCollab = media.credits.cast.concat(media.credits.crew);
 
@@ -53,8 +53,10 @@ export default async (req, res) => {
   }
 
   console.timeEnd(`Get collaborations`);
+  console.log(person);
 
   res.status(200).json({
-    data: Object.values(data),
+    name: person.name,
+    collaborations: Object.values(data),
   });
 };

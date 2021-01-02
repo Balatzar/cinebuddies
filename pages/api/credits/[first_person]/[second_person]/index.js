@@ -57,10 +57,12 @@ export default async (req, res) => {
   const { first_person, second_person } = req.query;
 
   const firstPersonCreditsRes = await fetchCredits(first_person);
-  const firstPersonCredits = await firstPersonCreditsRes.json();
+  const firstPerson = await firstPersonCreditsRes.json();
+  const firstPersonCredits = firstPerson.combined_credits;
 
   const secondPersonCreditsRes = await fetchCredits(second_person);
-  const secondPersonCredits = await secondPersonCreditsRes.json();
+  const secondPerson = await secondPersonCreditsRes.json();
+  const secondPersonCredits = secondPerson.combined_credits;
 
   const compareCredit = (acc, credit) => {
     const secondCredit =
