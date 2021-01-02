@@ -42,11 +42,13 @@ export default async (req, res) => {
         !data[collab.id].medias.find(({ title }) => title === newMedia.title)
       ) {
         data[collab.id].medias.push(newMedia);
+        data[collab.id].collab_count = data[collab.id].collab_count + 1;
       } else {
         data[collab.id] = {
           name: collab.name,
           known_for_department: collab.known_for_department,
           medias: [newMedia],
+          collab_count: 1,
         };
       }
     }
@@ -57,6 +59,8 @@ export default async (req, res) => {
 
   res.status(200).json({
     name: person.name,
-    collaborations: Object.values(data),
+    collaborations: Object.values(data).sort(
+      (a, b) => b.collab_count - a.collab_count
+    ),
   });
 };
