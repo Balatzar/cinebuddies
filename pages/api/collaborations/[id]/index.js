@@ -4,6 +4,7 @@ import {
 } from "../../../../services/tgdb";
 
 export default async (req, res) => {
+  console.time(`Get collaborations`);
   const { id } = req.query;
 
   const personCreditsRes = await fetchCredits(id);
@@ -50,6 +51,8 @@ export default async (req, res) => {
       }
     }
   }
+
+  console.timeEnd(`Get collaborations`);
 
   res.status(200).json({
     data: Object.values(data),
