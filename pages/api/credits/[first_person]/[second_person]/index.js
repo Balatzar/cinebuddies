@@ -1,8 +1,6 @@
 import { fetchCredits } from "../../../../../services/tgdb";
 
 const mergeDuplicates = (credits) => {
-  console.log(credits);
-
   return Object.values(
     credits.reduce((acc, credit) => {
       if (acc[credit.id]) {
