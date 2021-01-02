@@ -91,6 +91,9 @@ export default async (req, res) => {
   const data = mergeDuplicates(allData);
 
   res.status(200).json({
-    data: data.sort((a, b) => new Date(a).getTime() - new Date(b).getTime()),
+    data: data.sort(
+      (a, b) =>
+        new Date(a.release_date).getTime() - new Date(b.release_date).getTime()
+    ),
   });
 };
