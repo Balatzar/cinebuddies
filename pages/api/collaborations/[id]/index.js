@@ -32,7 +32,7 @@ export default async (req, res) => {
 
     for (let ii = 0; ii < fullCollab.length; ii++) {
       const collab = fullCollab[ii];
-      if (collab.id === id) continue;
+      if (collab.id == id) continue;
       const newMedia = {
         title: media.title || media.name,
         release_date: media.release_date || media.first_air_date,
@@ -45,6 +45,7 @@ export default async (req, res) => {
         data[collab.id].collab_count = data[collab.id].collab_count + 1;
       } else {
         data[collab.id] = {
+          id: collab.id,
           name: collab.name,
           known_for_department: collab.known_for_department,
           medias: [newMedia],
